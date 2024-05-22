@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>상품 등록</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
+    <script type="text/javascript" th:src="@{/js/productCheck.js}"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center">상품 등록하기</div>
+    <div>
+        <hr>
+        <form id="frm" th:action="@{/admin/product_add}" method="post" enctype="multipart/form-data"
+              th:object="${productDto}" onsubmit="checkFormSubmit(event)">
+            <div class="mb3">
+                <label class="form-label">상품 이름</label>
+                <input type="text" id="productName" name="productName" th:field="*{productName}" class="form-control">
+                <div id="errorDivName" style="color:red; font-weight:bold"></div>
+            </div>
+            <div class="mb3">
+                <label class="form-label">상품 가격</label>
+                <input id="productPrice" name="productPrice" type="number" th:field="*{productPrice}" class="form-control" onchange="checkProductPrice()">
+                <div id="errorDivPrice" style="color:red; font-weight:bold"></div>
+            </div>
+            <div class="mb3">
+                <label class="form-label">상품 수량</label>
+                <input id="productStock" name="productStock" type="number" th:field="*{productStock}" class="form-control" onchange="checkProductStock()">
+                <div id="errorDivStock" style="color:red; font-weight:bold"></div>
+                <div id="stockStatus" style="color: red; font-weight: bold;"></div>
+            </div>
+            <div class="mb3">
+                <label class="form-label">메인 카테고리</label>
+                <select id="mainCategory" onchange="updateSubCategories()" th:field="*{mainCategory}" class="form-select">
+                    <option value="">메인 카테고리를 선택해주세요</option>
+                    <option value="인형">인형</option>
+                    <option value="완구">완구</option>
+                    <option value="도서">도서</option>
+                </select>
+                <div id="errorDivMainCategory" style="color:red; font-weight:bold"></div>
+            </div>
+            <div class="mb3">
+                <label class="form-label">서브 카테고리</label>
+                <select id="subCategory" th:field="*{subCategory}" class="form-select">
+                </select>
+                <div id="errorDivSubCategory" style="color:red; font-weight:bold"></div>
+            </div>
+            <div class="mb3">
+                <label class="form-label">상품 설명 등록</label>
+                <input id="contentImgFile" name="contentImgFile" type="file" class="form-control">
+                <div id="errorDivContentImgfileInput" style="color:red; font-weight:bold"></div>
+            </div>
+            <div class="mb3">
+                <label class="form-label">이미지 등록</label>
+                <input id="imgFile" name="imgFile" type="file" class="form-control">
+                <div id="errorDivImgfileInput" style="color:red; font-weight:bold"></div>
+            </div>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">상품 등록</button>
+            <input type="button" value="다시" class="btn btn-primary" onclick="res()">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

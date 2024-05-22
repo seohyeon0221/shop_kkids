@@ -1,0 +1,210 @@
+html{
+    position : relative;
+    min-height: 100%;
+    margin:0;
+    }
+
+    body {
+      font-family: "pretendard Variable",sans-serif;
+      word-break: keep-all;
+      padding-top: 3%;
+      padding-bottom: 80px;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+
+    .header{
+      text-decoration: none;
+      font-size: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgb(58, 155, 69);
+      font-weight:700;
+    }
+
+    .navbar1 {
+    background : none;
+    margin:0;
+    height : 50px;
+    }
+
+    .item:hover {
+      background-color: #ffdc5e;
+    }
+
+
+    .footer{
+    position : absolute;
+    left : 0;
+    right : 0;
+    bottom : 0;
+    width : 100%;
+    padding : 15px 0;
+    }
+
+    .content{
+      justify-content: center;
+      text-align: center;
+      align-items: center;
+         margin-left : auto;
+         margin-right : auto;
+    }
+
+    .btn1{
+      text-decoration: none;
+      width: 70px;
+      padding: 10px;
+      vertical-align: top;
+      color : black;
+      font-size : 15px;
+    }
+
+    .dropmenu{
+    border:none;
+    border:0px;
+    margin:0px;
+    padding:0px;
+    height: 100px;
+    font: "sans-serif";
+    font-size:15px;
+    text-align: center;
+    font-weight : 600;
+    }
+
+    .dropmenu ul{
+    background: #F2C879;
+    height:50px;
+    list-style:none;
+    text-align: center;
+    width: 100%;
+    }
+
+    .dropmenu li{
+        background-color: none;
+        float: left;
+        margin-right: 10px;
+    padding:0px;
+    height: 50px;
+    width: 150px;
+    display: inline block;
+    }
+
+
+
+    /* 메인 카테고리 */
+    .dropmenu li a{
+    color:#20754C;
+    display:block;
+    line-height:50px;
+    margin right : auto;
+      margin left : auto;
+    text-align:center;
+    text-decoration:none;
+
+
+    }
+
+    .dropmenu li a:hover, .dropmenu ul li:hover a{
+    background: #F9A58B;
+    color:#FFFFFF;
+    text-decoration:none;
+    width : 150px;
+    }
+
+    /* 서브 카테고리 */
+    .dropmenu li ul{
+    background: #F9A58B;
+    display:none;
+    height:auto;
+    border:0px;
+    position:absolute;
+    width:150px;
+    z-index:200;
+    }
+
+    .dropmenu li:hover ul{
+    display:block;
+    }
+
+    .dropmenu li li {
+   background: none;
+    display:flex;
+    float:none;
+    margin-left:0px;
+    padding-left:0px;
+    width:100%;
+    }
+
+    .dropmenu li:hover li a{
+    background:none;
+    }
+
+    .dropmenu li ul a{
+    display:block;
+    height:50px;
+    font-size:14px;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+    }
+
+    .dropmenu li ul a:hover, .dropmenu li ul li:hover a{
+    background: #F28B66;
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+    }
+
+    .dropmenu p{
+    clear:left;
+    }
+
+    .search_input{
+      margin-top : 10px;
+      width: 13%;
+      padding : 0px 10px;
+      font-size: 16px;
+      color: #575756;
+      background-color: transparent;
+      /* border-radius: 50px; */
+      border-width: 0 0 1px;
+      }
+
+    .search_input:focus{
+      outline: none;
+    }
+
+   img.search_icon{
+   margin top : 100px;
+   margin right : 10px;
+   border-width:0;
+    background: url('/img/search_icon'), no-repeat;
+   width:35px;
+   height:35px;
+   }
+
+    table.type1{
+      border-collapse: separate;
+      border-spacing: 1px;
+      text-align: center;
+      line-height: 1.5;
+
+           margin-left : auto;
+           margin-right : auto;
+    }
+    table.type1 th {
+      width: 155px;
+      padding: 10px;
+      font-weight: bold;
+      vertical-align: top;
+      color: #fff;
+      background: rgb(58, 155, 69) ;
+    }
+    table.type1 td {
+      width: 155px;
+      padding: 10px;
+      vertical-align: top;
+      border-bottom: 1px solid #ccc;
+      background: #ffffff;
+    }

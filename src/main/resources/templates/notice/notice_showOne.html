@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center"> 공지사항 </div>
+    <br>
+    <form th:each="one : ${noticeDto}" th:object="${one}">
+        <div><h3>제목:[[*{title}]]</h3> </div>
+        <div th:if="${one.updatedAt != null}" align="right"><h5>수정일: [[*{updatedAt}]]</h5></div>
+
+        <hr>
+
+        <div>
+            <div>
+                <h5>[[*{content}]]</h5>
+                <a th:href="@{/notice}">공지사항 목록으로 돌아가기</a>
+            </div>
+        </div>
+        <br>
+    </form>
+
+</div>
+</body>
+</html>

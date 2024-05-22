@@ -1,0 +1,127 @@
+/* navbar */
+.header_nav {
+background : none;
+margin:0;
+height : 50px;
+}
+
+.drop_menu{
+    border:none;
+    border:0px;
+    margin:0px;
+    padding:0px;
+    height: 100px;
+    font: "sans-serif";
+    font-size:15px;
+    text-align: center;
+    font-weight : 600;
+}
+
+.drop_menu ul{
+    background: #F2C879;
+    height:50px;
+    list-style:none;
+    text-align: center;
+    width: 100%;
+}
+
+.drop_menu li{
+    background-color: none;
+    float: left;
+    margin-right: 10px;
+    padding:0px;
+    height: 50px;
+    width: 150px;
+    display: inline block;
+}
+
+
+
+/* 메인 카테고리 */
+.drop_menu li a{
+    color:#20754C;
+    display:block;
+    line-height:50px;
+    margin right : auto;
+    margin left : auto;
+    text-align:center;
+    text-decoration:none;
+}
+
+.drop_menu li a:hover, .drop_menu ul li:hover a{
+    background: #F9A58B;
+    color:#FFFFFF;
+    text-decoration:none;
+    width : 150px;
+}
+
+/* 서브 카테고리 */
+.drop_menu li ul{
+    background: #F9A58B;
+    display:none;
+    height:auto;
+    border:0px;
+    position:absolute;
+    width:150px;
+    z-index:200;
+}
+
+.drop_menu li:hover ul{
+    display:block;
+}
+
+.drop_menu li li {
+    background: none;
+    display:flex;
+    float:none;
+    margin-left:0px;
+    padding-left:0px;
+    width:100%;
+}
+
+.drop_menu li:hover li a{
+    background:none;
+}
+
+.drop_menu li ul a{
+    display:block;
+    height:50px;
+    font-size:14px;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+}
+
+.drop_menu li ul a:hover, .dropmenu li ul li:hover a{
+    background: #F28B66;
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+}
+
+.drop_menu p{
+    clear:left;
+}
+
+.search_input{
+    margin-top : 10px;
+    width: 13%;
+    padding : 0px 10px;
+    font-size: 16px;
+    color: #575756;
+    background-color: transparent;
+    border-width: 0 0 1px;
+}
+
+.search_input:focus{
+    outline: none;
+}
+
+img.search_icon{
+    margin top : 100px;
+    margin right : 10px;
+    border-width:0;
+    background: url('/img/search_icon'), no-repeat;
+    width:35px;
+    height:35px;
+}

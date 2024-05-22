@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center"> 관리자페이지</div>
+    <div th:if="${count}==0" align="center">등록된 상품이 존재하지 않습니다.</div>
+    <div th:unless="${count}==0">
+        <table class="type1" align="center" border="2">
+            <tr>
+                <th>카테고리</th>
+                <th>상품이미지</th>
+                <th>상품명</th>
+                <th>상품가격</th>
+                <th>재고현황</th>
+                <th>변경사항</th>
+            </tr>
+            <tr th:each="product : ${paging}" th:object="${product}">
+                <td>[[*{mainCategoryName}]] > [[*{subCategoryName}]]</td>
+                <td>
+                    <img class="product-image" th:src="@{${product.getImgPath()}}" width="100px" height="100px">
+                </td>
+                <td th:text="*{productName}"></td>
+                <td th:text="*{productPrice}+원"></td>
+                <td th:if="*{productStock}>0">[[*{productStock}]]</td>
+                <td th:if="*{productStock}==0">품절</td>
+                <td>
+                    <a th:href="@{/admin/product_change/{id}(id=*{productId})}">
+                        <input type="submit" name="change" value="수정"></a>
+<!--                    <form th:action="@{/admin/delete/{deleteId}(deleteId=*{productId})}"-->
+<!--                          onclick="return confirm('정말로 삭제하시겠습니까?');"-->
+<!--                          method="post">-->
+<!--                        <input type="hidden" name="deleteId" th:value="*{productId}">-->
+<!--                        <input type="submit" value="삭제">-->
+<!--                    </form>-->
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div style="display: flex; justify-content: center;">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${paging.number}<=0?'disabled'">
+                        <a class="page-link"
+                           th:href="@{/admin/product_all(page=${paging.number-1})}">
+                            <<
+                        </a>
+                    </li>
+                    <th:block th:each="pageNumber:${paginationBarNumbers}">
+                        <li class="page-item"><a class="page-link"
+                                                 th:href="@{/admin/product_all(page=${pageNumber})}"
+                                                 th:text="${pageNumber+1}">1</a></li>
+                    </th:block>
+                    <li class="page-item" th:classappend="${paging.number}==${paging.totalPages-1}?'disabled'">
+                        <a class="page-link"
+                           th:href="@{/admin/product_all(page=${paging.number+1})}">>></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

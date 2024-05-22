@@ -1,0 +1,54 @@
+//업데이트 폼
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>수정화면</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <h4 style="font-weight:bold">회원 정보 수정하기</h4>
+    <br>
+    <form id="frm"  th:action="@{/admin/update}"
+          method="post" th:object="${accountDto}">
+        <!--        에러 나타내기-->
+        <div th:replace="~{fragments/form_errors::formErrorsFragment}"></div>
+
+        <div class="mb3">
+            <label for="username" class="form-label">사용자 ID : </label>
+            <span th:text="*{username}" name="username" class="form-control"></span>
+            <!--            <span style="color:red; font-weight:bold;" class="error-class" th:errors ="*{username}"></span>-->
+        </div>
+        <div class="mb3">
+            <label for="name" class="form-label">사용자 이름</label>
+            <input name="name" type="text" th:field="*{name}"  class="form-control">
+            <span style="color:red; font-weight:bold"  class="error-class" th:errors ="*{name}"></span>
+        </div>
+        <div class="mb3">
+            <label for="userPhone" class="form-label">전화번호</label>
+            <input  name="userPhone" type="text" th:field="*{userPhone}"  class="form-control">
+            <span style="color:red; font-weight:bold"  class="error-class" th:errors ="*{userPhone}"></span>
+        </div>
+        <div class="mb3">
+            <label for="userAddress" class="form-label">주소</label>
+            <input name="userAddress" type="text" th:field="*{userAddress}"  class="form-control">
+            <span style="color:red; font-weight:bold"  class="error-class" th:errors ="*{userAddress}"></span>
+        </div>
+
+        <div class="mb3">
+            <label for="userEmail" class="form-label">이메일</label>
+            <input name="userEmail" type="email" th:field="*{userEmail}"  class="form-control">
+            <span style="color:red; font-weight:bold" class="error-class" th:errors ="*{userEmail}"></span>
+        </div>
+        <br>
+        <input type="hidden" th:field="*{username}">
+        <input type="submit" value="수정">
+        <br>
+        <a th:href="@{/admin/user_all}">회원 목록 화면으로 돌아가기</a>
+    </form>
+    <br>
+</div>

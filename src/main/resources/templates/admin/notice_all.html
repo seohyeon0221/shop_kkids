@@ -1,0 +1,70 @@
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content" class="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center">관리자 공지사항 페이지</div>
+    <div th:if="${count}==0" align="center">등록된 공지사항이 존재하지 않습니다.</div>
+    <div th:unless="${count}==0">
+     <table class="table">
+        <tr>
+            <td>공지사항 ID</td>
+            <td>제목</td>
+            <td>내용</td>
+            <td>등록일</td>
+            <td>수정일</td>
+            <td></td>
+
+        </tr>
+        <tr th:each="notice:${paging}" th:object="${notice}" >
+            <td th:text="*{noticeId}">ID</td>
+            <td>
+                <a th:href="@{/admin/notice_change/{noticeId}(noticeId=${notice.noticeId})}">
+                    <span th:text="${notice.title}"></span>
+                </a>
+            </td>
+            <td th:text="*{content}">내용 1</td>
+            <td th:text="*{createdAt}">등록일</td>
+            <td th:text="*{updatedAt}">수정일</td>
+            <td>
+                <form th:action="@{/admin/notice_delete/{deleteId}(deleteId=*{noticeId})}"
+                      onclick="return confirm('정말로 삭제하시겠습니까?');"
+                      method="post">
+                    <input type="hidden" name="deleteId" th:value="*{noticeId}">
+                    <input type="submit" value="삭제">
+                </form>
+            </td>
+        </tr>
+    </table>
+        <div style="display: flex; justify-content: center;">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${paging.number}<=0?'disabled'">
+                    <a class="page-link"
+                       th:href="@{/admin/notice_all(page=${paging.number-1})}">
+                        <<
+                    </a>
+                </li>
+                <th:block th:each="pageNumber:${paginationBarNumbers}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/admin/notice_all(page=${pageNumber})}"
+                                             th:text="${pageNumber+1}">1</a></li>
+                </th:block>
+                <li class="page-item" th:classappend="${paging.number}==${paging.totalPages-1}?'disabled'">
+                    <a class="page-link"
+                       th:href="@{/admin/notice_all(page=${paging.number+1})}">>></a>
+                </li>
+            </ul>
+        </nav>
+        </div>
+        </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
+
+
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center"> 상품 수정하기 </div>
+    <div align="right"><a th:href="@{/admin/notice_all}">상품 전체 목록으로 돌아가기</a></div>
+    <div>
+        <hr>
+        <form id="frm" th:action="@{/admin/notice_update}" method="post"
+              th:object="${noticeDto}" >
+            <div class="mb3">
+                <label class="form-label">제목</label>
+                <input type="text" id="title" name="title"  th:field="*{title}" class="form-control">
+                <span style="color:red; font-weight:bold"  class="error-class" th:errors ="*{title}"></span>
+            </div>
+            <div class="mb3">
+                <label class="form-label" th:field="*{content}">내용</label>
+                <textarea name="content" id="contents" class="form-control" row="3"></textarea>
+                <span style="color:red; font-weight:bold"  class="error-class" th:errors ="*{content}"></span>
+            </div>
+
+            <br>
+            <input type="hidden" th:field="*{noticeId}">
+            <input type="submit" value="수정">
+            <input type="button" value="다시" class="btn btn-primary" onclick="res()">
+        </form>
+        <br>
+
+    </div>
+
+
+
+</div>
+</body>
+</html>

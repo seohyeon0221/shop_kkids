@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center"> 관리자페이지</div>
+    <div th:if="${count}==0" align="center">가입한 회원이 존재하지 않습니다.</div>
+    <div th:unless="${count}==0">
+        <table class="type1" align="center" border="2">
+            <tr>
+                <th>사용자 ID</th>
+                <th>이름</th>
+                <th>전화번호</th>
+                <th>주소</th>
+                <th>이메일</th>
+                <th>가입일</th>
+                <th>관리</th>
+            </tr>
+            <tr th:each="user : ${paging}" th:object="${user}" >
+                    <td th:text="*{username}"></td>
+                    <td th:text="*{name}"></td>
+                    <td th:text="*{userPhone}"></td>
+                    <td th:text="*{userAddress}"></td>
+                    <td th:text="*{userEmail}"></td>
+                    <td th:text="*{createdAt}"></td>
+                <td>
+                    <a th:href="@{/admin/user_change/{id}(id=*{username})}">
+                        <input type="submit" name="change" value="수정하기"></a>
+                    <form th:action="@{/admin/userDelete/{deleteId}(deleteId=*{username})}"
+                          onclick="return confirm('사용자 강제 탈퇴시 복구가 어렵습니다');"
+                          method="post">
+                        <input type="hidden" name="deleteId" th:value="*{username}">
+                        <input type="submit" value="강제탈퇴">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div style="display: flex; justify-content: center;">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${paging.number}<=0?'disabled'">
+                        <a class="page-link"
+                           th:href="@{/admin/user_all(page=${paging.number-1})}">
+                            <<
+                        </a>
+                    </li>
+                    <th:block th:each="pageNumber:${paginationBarNumbers}">
+                        <li class="page-item"><a class="page-link"
+                                                 th:href="@{/admin/user_all(page=${pageNumber})}"
+                                                 th:text="${pageNumber+1}">1</a></li>
+                    </th:block>
+                    <li class="page-item" th:classappend="${paging.number}==${paging.totalPages-1}?'disabled'">
+                        <a class="page-link"
+                           th:href="@{/admin/user_all(page=${paging.number+1})}">>></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center"> 회원정보 </div>
+    <br>
+    <div th:object="${userAccountDto}" >
+        <table class="table">
+            <tr>
+                <td>이름</td>
+                <td th:text="*{name}">이름 값</td>
+            </tr>
+            <tr>
+                <td>아이디</td>
+                <td th:text="*{username}">아이디 값</td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td th:text="*{userAddress}">주소 값</td>
+            </tr>
+            <tr>
+                <td>번호</td>
+                <td th:text="*{userPhone}">번호 값</td>
+            </tr>
+            <tr>
+                <td>이메일</td>
+                <td th:text="*{userEmail}">이메일 값</td>
+            </tr>
+
+        </table>
+        <form th:action="@{/admin/update}" method="get">
+            <input type="hidden" name="username" th:value="*{username}">
+            <input type="submit" value="수정하기">
+        </form>
+        <a th:href="@{/admin/user_all}">돌아가기</a>
+        <br>
+    </div>
+</div>
+</body>
+</html>

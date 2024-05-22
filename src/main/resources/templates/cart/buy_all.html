@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/myCart_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h2 align="center">구매창</h2>
+    <br>
+    <div th:if="${total}==0" align="center">
+        구매가 가능한 상품이 없습니다.
+    </div>
+    <div th:unless="${total}==0">
+    <form  method="post" th:action="@{/buy_all}">
+        <table class="type1" align="center" border="2">
+            <tr>
+                <th>상품명</th>
+                <th>구매수량</th>
+                <th>가격</th>
+            </tr>
+            <tr th:each="my : ${myCart}" th:object="${my}">
+                <td th:text="*{productName}"></td>
+                <td th:text="${my.count}">수량</td>
+                <td th:text="${my.productPrice}*${my.count}">가격</td>
+            </tr>
+        </table>
+        <br>
+        <div align="center">
+            <span> 현재 소지 포인트 : [[${point}]] 원</span>
+        </div>
+        <div align="center"> 총 가격 : [[${total}]] 원</div>
+        <div align="center">
+            <span th:if="${point} < ${total}">
+                <button type="submit" name="action" value="requestMoney">충전하기</button>
+            </span>
+            <span th:unless="${point} < ${total}">
+
+        <button type="submit" name="action" value="buy">구매하기</button>
+            </span>
+            <button type="submit" name="action" value="cancel">취소</button>
+        </div>
+    </form>
+    </div>
+
+</div>
+</body>
+</html>

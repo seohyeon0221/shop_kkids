@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/myCart_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h2 align="center">구매가 완료되었습니다.</h2>
+    <div align="center">
+    <a th:href="@{/}"><button class="orange_btn" >메인화면</button></a>
+    </div>
+    <br>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+/*상품목록 배열하기 */
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* 왼쪽 정렬 */
+}
+
+.product {
+    width: calc(25% - 20px); /* 너비를 25%로 설정하고 간격을 조절 */
+    margin: 10px; /* 각 상품 사이의 간격 및 외부 여백 설정 */
+    height: 60%
+    box-sizing: border-box; /* 요소의 너비에 padding과 border를 포함시킴 */
+}
+
+.product-inner {
+    border: 3px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    height: 300px;
+    width: 300px;
+}
+
+.product-image {
+    width: 200px;  /* 원하는 너비로 설정 */
+    height: 200px;  /* 비율을 유지하면서 높이를 자동으로 설정 */
+}
+
+.product-info {
+    margin-top: 10px;
+}
+
+.product-name {
+    font-weight: bold;
+}
+
+.product-price {
+    color: #888;
+}
+
+/*사용자 화면 (product_detail)이미지에 마우스 올리면 확대*/
+.img-box {width: 400px; height:400px; border:0;}
+  .img-box .img-wrap {overflow: hidden;}
+  .thumb {width: 400px; height: 400px;}
+  .img-box img:hover {transform: scale(1.2, 1.2); transition-duration: 0.5s;}
+  .img-box img {transition-duration: 0.3s;}
+
+  .content-img{
+  background-position:center;
+  margin:0 auto;
+  align-items : center;
+  justify-content:center;
+  background-size:120%;
+  display : flex;
+  }
+
+    .content-imgs{
+    max-width:100%;
+    max-height:100%;
+    }
+
+
+/* 상품 상단 정보 */
+
+.product_title{
+  display: flex;
+  justify-content: center;
+}
+.product_show {
+  padding: 20px;
+  margin: 5px;
+}

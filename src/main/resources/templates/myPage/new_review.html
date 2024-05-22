@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/myCart_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>리뷰 등록</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <br>
+    <h4 style="font-weight:bold">리뷰 등록하기</h4>
+    <br>
+    <form id="frm" th:action="@{/review_add}" method="post" th:object="${reviewDto}">
+        <div class="mb3">
+            <label class="form-label" th:for="contents">내용</label>
+            <textarea id="contents" name="content" class="form-control" cols="50" rows="10" th:field="*{content}"
+            placeholder="리뷰는 한 번 작성 시 수정및 삭제가 불가합니다. 신중하게 작성해 주세요!"></textarea>
+            <span style="color:red; font-weight:bold" class="error-class" th:errors="*{content}"></span>
+        </div>
+        <br>
+        <input type="hidden" name="productId" th:value="${productId}">
+        <button type="submit" class="btn btn-primary" >등록하기</button>
+        <a href="#" class="btn btn-primary" onclick="history.go(-1); return false;">취소</a>
+    </form>
+</div>
+</body>
+
+</html>

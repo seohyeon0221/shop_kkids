@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/no_nav_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>회원가입</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+
+    <div class="signup-form">
+        <form th:action="@{/user/signup}" method="post" class="form-horizontal" th:object="${userAccountDto}" id="frm">
+            <div th:replace="~{fragments/form_errors::formErrorsFragment}"></div>
+            <div class="col-xs-8 col-xs-offset-4">
+                <h2>회원가입</h2>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4">사용자 ID</label>
+                <div class="col-xs-8">
+                    <input class="form-control" type="text" id="username" name="username" th:field="*{username}"
+                           required="required">
+                    <span style="color:red; font-weight:bold;" class="error-class" th:errors="*{username}"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-4">사용자 PASSWORD</label>
+                <div class="col-xs-8">
+                    <input id="password" name="password" type="password" th:field="*{password}" class="form-control"
+                           required="required">
+                    <span style="color:red; font-weight:bold" class="error-class" th:errors="*{password}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-4">PASSWORD CHECK</label>
+                <div class="col-xs-8">
+                    <input id="passwordCheck" name="passwordCheck" type="password" th:field="*{passwordCheck}"
+                           class="form-control" required="required">
+                    <span style="color:red; font-weight:bold" class="error-class" th:errors="*{passwordCheck}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-4">사용자 이름</label>
+                <div class="col-xs-8">
+                    <input class="form-control" required="required" id="name" name="name" type="text"
+                           th:field="*{name}">
+                    <span style="color:red; font-weight:bold" class="error-class" th:errors="*{name}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-4">이메일</label>
+                <div class="col-xs-8">
+                    <input class="form-control" required="required" id="userEmail" name="userEmail" type="email"
+                           th:field="*{userEmail}">
+                    <span style="color:red; font-weight:bold" class="error-class" th:errors="*{userEmail}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-4">전화번호</label>
+                <div class="col-xs-8">
+                    <input class="form-control" required="required" id="userPhone" name="userPhone" type="text"
+                           th:field="*{userPhone}">
+                    <span style="color:red; font-weight:bold" class="error-class" th:errors="*{userPhone}"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-xs-4">주소</label>
+                <div class="col-xs-8">
+                    <input class="form-control" required="required" id="userAddress" name="userAddress" type="text"
+                           th:field="*{userAddress}">
+                    <span style="color:red; font-weight:bold" class="error-class" th:errors="*{userAddress}"></span>
+                </div>
+            </div>
+
+
+            <br>
+            <div align="center">
+            <input type="hidden" name="insertPoint" th:field="*{insertPoint}" value="0">
+            <button type="submit" class="btn btn-primary btn-lg">회원가입</button>
+            <button type="submit" class="btn btn-primary btn-lg" onclick="res()">취소</button>
+            </div>
+        </form>
+        <div class="text-center">혹시 이미 회원이십니까? <a th:href="@{/user/login}">로그인</a></div>
+
+    </div>
+</div>
+</body>
+</html>

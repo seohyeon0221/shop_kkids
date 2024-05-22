@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <div align="center" style="font-size:20px">촉각놀이</div>
+    <div align="right" style="font-size:15px">
+        <a class="sort_btn" role="button" aria-expanded="false" th:href="@{/toy_touch/low-price}">낮은 가격 순</a>
+        <a class="sort_btn" role="button" aria-expanded="false" th:href="@{/toy_touch/high-price}">높은 가격 순</a>
+    </div>
+    <div th:if="${count}==0" align="center">관련된 상품이 존재하지 않습니다.</div>
+    <div  th:unless="${count}==0">
+        <div class="product-container">
+            <!-- 각 상품에 대한 div 요소 -->
+            <div class="product" th:each="toy : ${toyAll}" th:object="${toy}">
+                <div class="product-inner">
+                    <!-- 이미지가 없는 경우 -->
+                    <div>
+                        <img class="product-image" th:src="@{${toy.getImgPath()}}">
+                    </div>
+                    <!-- 상품 이름 및 가격 -->
+                    <br>
+                    <div class="product-info">
+                        <a class="product-name" th:href="@{/product_detail/{productId}(productId=*{productId})}" th:text="*{productName}"></a>
+                        <br>
+                        <span class="product-price" th:text="*{productPrice} + '원'"></span>
+                        <span th:if="*{productStock}<30">
+                    <span style="color:red; font-weight:bold" th:if="*{productStock}==0"> 품절</span>
+                    <span style="color:red; font-weight:bold" th:unless="*{productStock}==0">품절임박</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

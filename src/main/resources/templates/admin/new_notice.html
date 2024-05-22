@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 등록</title>
+    <script type="text/javascript" th:src="@{/js/check.js}"></script>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <br>
+    <h4 style="font-weight:bold">공지사항 등록하기</h4>
+    <br>
+    <form id="frm"  th:action="@{/admin/notice_add}"
+          method="post" th:object="${noticeDto}">
+
+
+        <div class="mb3">
+            <label class="form-label">제목</label>
+            <input type="text" id="title" name="title"  th:field="*{title}" class="form-control">
+            <span style="color:red; font-weight:bold;" class="error-class" th:errors ="*{title}"></span>
+        </div>
+        <div class="mb3">
+            <label class="form-label" th:field="*{content}">내용</label>
+            <textarea name="content" id="contents" class="form-control" row="3"></textarea>
+            <span style="color:red; font-weight:bold"  class="error-class" th:errors ="*{content}"></span>
+        </div>
+
+        <br>
+        <button type="submit" class="btn btn-primary">등록하기</button>
+        <button type="submit" class="btn btn-primary" onclick="res()">취소</button>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/adminpage_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <div style="font-size:20px;" align="center"> 관리자페이지</div>
+    <br>
+    <form th:each="one : ${noticeDto}" th:object="${one}">
+        <div><h3>제목:[[*{title}]]</h3> </div>
+
+        <hr>
+
+        <div>
+            <div>
+                <h5>공지사항 내용:[[*{content}]]</h5>
+                <a th:href="@{/admin/notice_update(noticeId=${noticeDto.noticeId})}">변경하기</a>
+                <a th:href="@{/admin/notice_all}">취소</a>
+            </div>
+        </div>
+        <br>
+    </form>
+
+</div>
+</body>
+</html>

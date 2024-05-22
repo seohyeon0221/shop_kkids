@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/myCart_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h2 align="center">구매창</h2>
+    <br>
+    <form th:object="${buyDto}" method="post" th:action="@{/buy_one}">
+        <table class="type1" align="center" border="2">
+            <tr>
+                <th>상품명</th>
+                <th>구매수량</th>
+                <th>가격</th>
+            </tr>
+            <tr th:each="my : ${buyDto}">
+                <td>[[${my.productName}]]</td>
+                <td th:text="${my.count}">수량</td>
+                <td th:text="${my.price}*${my.count}">가격</td>
+            </tr>
+        </table>
+        <br>
+        <input type="hidden" name="productId" th:value="${buyDto.productId}">
+        <input type="hidden" name="productName" th:value="${buyDto.productName}">
+        <input type="hidden" name="username" th:value="${username}">
+        <input type="hidden" name="count" th:value="${buyDto.count}">
+        <input type="hidden" name="price" th:value="${buyDto.price}">
+        <div align="center">
+            <span> 현재 소지 포인트 : [[${userPoint}]] 원</span>
+        </div>
+        <div align="center"> 총 가격 : [[${total}]] 원</div>
+        <div align="center">
+            <span th:if="${userPoint} < ${total}">
+                <button type="submit" name="action" value="requestMoney">충전하기</button>
+            </span>
+            <span th:unless="${userPoint} < ${total}">
+        <button type="submit" name="action" value="buy">구매하기</button>
+            </span>
+            <button type="submit" name="action" value="cancel">취소</button>
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>

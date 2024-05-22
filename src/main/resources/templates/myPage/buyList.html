@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/myCart_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <br>
+    <br>
+    <h2 align="center">구매내역</h2>
+    <br>
+    <div th:if="${size}==0">구매내역이 없습니다.</div>
+    <div th:unless="${size}==0">
+
+
+        <table class="type1" align="center" border="2">
+            <tr>
+                <th>구매번호</th>
+                <th>상품명</th>
+                <th>수량</th>
+                <th>가격</th>
+                <th>상태</th>
+                <th>리뷰 작성하기</th>
+            </tr>
+
+            <tr th:each="my : ${buyList}" th:object="${my}">
+                <td th:text="*{buyProductId}"></td>
+                <td th:text="*{productName}"></td>
+                <td th:text="*{count}"></td>
+                <td th:text="*{totalPrice}"></td>
+                <td th:text="*{statues}"></td>
+                <td>
+                    <form id="reviewForm" th:if="${my.statues == '배송완료'}" th:action="@{/review_add}" method="get">
+                        <input type="hidden" name="productId" th:value="${my.productId}">
+                        <span>
+                            <button th:if="${my.reviewExists}==true" disabled>리뷰 작성완료</button>
+                            <button th:unless="${my.reviewExists}==true" type="submit">리뷰 작성하기</button>
+                        </span>
+                    </form>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+</html>
